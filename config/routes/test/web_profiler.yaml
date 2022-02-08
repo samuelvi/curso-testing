@@ -1,0 +1,2 @@
+web_profiler_test:
+    resource: ../dev/web_profiler.yaml

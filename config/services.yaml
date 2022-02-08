@@ -1,0 +1,24 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+        bind:
+            $kernelProjectDir: '%kernel.project_dir%'
+            $kernelLogDir: '%kernel.logs_dir%'
+            $kernelEnvironment: '%kernel.environment%'
+            $screenshotsPath: '%kernel.project_dir%/var/screenshots/test/'
+            $mailHogBaseUrl: 'http://localhost:8025'
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Tests\:
+        resource: '../tests'
+        exclude:
+            - '../tests/bootstrap.php'
