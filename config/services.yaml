@@ -23,3 +23,5 @@ services:
         resource: '../tests'
         exclude:
             - '../tests/bootstrap.php'
+
+    App\DataFixtures\HashPasswordProvider: ~
