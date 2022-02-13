@@ -17,8 +17,8 @@ services:
     fpm:
         build: php-fpm
         container_name: curso_testing_php_fpm
-        environment:
-            - DATABASE_URL=mysql://root:root@db/docker_sf
+#        environment:
+#            - MY_ENV_VAR=mysql://root:root@db/
         volumes:
             - curso_testing_system:/var/www/html/:cached
         networks:

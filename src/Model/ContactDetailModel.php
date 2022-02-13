@@ -99,15 +99,12 @@ class ContactDetailModel
         $this->message = $message;
     }
 
-
-    /**
-     * @param UserEntity $user
-     */
-    public static function createFromUser($user) {
-        $contactDetailModel = new ContactDetail();
-        if (null !== $user) {
-            $contactDetailModel->email = $user->getEmail();
-            $contactDetailModel->fullname = $user->getFullName();
+    public static function createFromUser(?UserEntity $userEntity): self
+    {
+        $contactDetailModel = new self();
+        if (null !== $userEntity) {
+            $contactDetailModel->email = $userEntity->getEmail();
+            $contactDetailModel->fullname = $userEntity->getFullName();
         }
         return $contactDetailModel;
     }

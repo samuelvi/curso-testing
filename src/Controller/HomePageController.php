@@ -5,14 +5,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-final class IndexController extends AbstractController
+final class HomePageController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="home_page")
      */
     public function __invoke()
     {
-        // TODO: Implement __invoke() method.
-        die("YA");
+        return $this->render('frontend/home_page/index.html.twig');
     }
 }

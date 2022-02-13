@@ -3,25 +3,24 @@
 namespace App\Repository\Subscription;
 
 use App\Entity\SubscriptionEntity;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class SubscriptionQuery
+class SubscriptionQuery extends ServiceEntityRepository
 {
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(ManagerRegistry $registry)
     {
-        $this->em = $em;
+        parent::__construct($registry, SubscriptionEntity::class);
     }
 
     public function getNumberOfSubscriptions()
     {
-        return $this->em->getRepository(SubscriptionEntity::class)->getNumberOfSubscriptions();
+        return $this->getEntityManager()->getRepository(SubscriptionEntity::class)->getNumberOfSubscriptions();
     }
 
     public function getSubscriptionById($id)
     {
-        return $this->em->getRepository(SubscriptionEntity::class)->find($id);
+        return $this->getEntityManager()->getRepository(SubscriptionEntity::class)->find($id);
     }
 
     public function existsSubscriptionByEmail($email)
@@ -31,12 +30,12 @@ class SubscriptionQuery
 
     public function findSubscriptionByEmail($email): ?SubscriptionEntity
     {
-        return $this->em->getRepository(SubscriptionEntity::class)->findOneByEmail($email);
+        return $this->getEntityManager()->getRepository(SubscriptionEntity::class)->findOneByEmail($email);
     }
 
     public function getAllSubscriptionsByEmailAndFullName($email, $fullName)
     {
         $params = ['email' => $email, 'fullname' => $fullName];
-        return $this->em->getRepository(SubscriptionEntity::class)->findBy($params);
+        return $this->getEntityManager()->getRepository(SubscriptionEntity::class)->findBy($params);
     }
 }

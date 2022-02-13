@@ -1,16 +1,17 @@
 services:
-
     _defaults:
+
         autowire: true
         autoconfigure: true
 
+       # Bind not used parameters will raise an exception
         bind:
-            $kernelProjectDir: '%kernel.project_dir%'
-            $kernelLogDir: '%kernel.logs_dir%'
-            $kernelEnvironment: '%kernel.environment%'
-            $screenshotsPath: '%kernel.project_dir%/var/screenshots/test/'
-            $mailHogBaseUrl: 'http://localhost:8025'
-
+             string $webmasterEmail: 'webmaster@email.ext'
+#            string $kernelProjectDir: '%kernel.debug%'
+#            string $kernelLogDir: '%kernel.logs_dir%'
+#            string $kernelEnvironment: '%kernel.environment%'
+#            string $screenshotsPath: '%kernel.project_dir%/var/screenshots/test/'
+#            string $mailHogBaseUrl: 'http://localhost:8025'
     App\:
         resource: '../src/'
         exclude:
