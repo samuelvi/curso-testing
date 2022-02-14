@@ -129,9 +129,15 @@ class SubscriptionEntity
         $this->state = $state;
     }
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     public static function createFromContactDetail(ContactDetailModel $contactDetailModel)
     {
         $subscriptionEntity = new self();
+        $subscriptionEntity->createdAt = new \DateTime();
         $subscriptionEntity->setEmail($contactDetailModel->getEmail());
         $subscriptionEntity->setFullname($contactDetailModel->getFullname());
 

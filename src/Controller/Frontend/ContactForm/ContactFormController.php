@@ -30,7 +30,7 @@ class ContactFormController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->contactFormHandler->handle($form);
+            $this->contactFormHandler->handle($form->getData());
             $parameters = $this->buildContactOkParameters();
             return $this->redirectToRoute('last_page_ok', ['parameters' => LastPage::encodeParameters($parameters)]);
         }

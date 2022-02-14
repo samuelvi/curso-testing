@@ -6,6 +6,7 @@ namespace App\Controller\Frontend\Subscription;
 
 use App\Annotation\Tracker;
 use App\Context\Frontend\Subscription\Form\Type\SubscriptionType;
+use App\Context\Frontend\Subscription\Handler\SubscriptionHandler;
 use App\Entity\SubscriptionEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,6 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SubscriptionController extends AbstractController
 {
+    private SubscriptionHandler $subscriptionHandler;
+
+    public function __construct(SubscriptionHandler $subscriptionHandler)
+    {
+        $this->subscriptionHandler = $subscriptionHandler;
+    }
+
     /**
      * @Route("/subscription/add", name="subscription_add")
      * @Tracker(subject="New Subscription")
@@ -28,11 +36,14 @@ class SubscriptionController extends AbstractController
         $form = $this->createForm(SubscriptionType::class, $subscriptionEntity);
         $form->handleRequest($request);
 
-        if (!$form->isSubmitted() || !$request->isXmlHttpRequest()) {
+        if (!$form->isSubmitted()) {
             return $this->render('frontend/subscription/subscription_form.html.twig', ['form' => $form->createView()]);
         }
 
         if ($form->isValid()) {
+
+            $this->subscriptionHandler->handle($form->getData());
+
             $response = [
                 'response' => [
                     'state' => 'OK',

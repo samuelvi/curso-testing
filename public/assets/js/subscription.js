@@ -9,6 +9,7 @@ SubmitFormManager.prototype.initialize = function initialize() {
 };
 
 SubmitFormManager.prototype.submitFormListener = function () {
+
     var that = this;
     $(document).on('submit', '[id^="' + this.formId + '"]', function (event) {
 

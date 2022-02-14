@@ -18,7 +18,7 @@ class SubscriptionQuery extends ServiceEntityRepository
         return $this->getEntityManager()->getRepository(SubscriptionEntity::class)->getNumberOfSubscriptions();
     }
 
-    public function getSubscriptionById($id)
+    public function findSubscriptionById($id)
     {
         return $this->getEntityManager()->getRepository(SubscriptionEntity::class)->find($id);
     }

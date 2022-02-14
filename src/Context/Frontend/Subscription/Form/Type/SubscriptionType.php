@@ -69,4 +69,9 @@ class SubscriptionType extends AbstractType
             'custom_parameters' => null,
         ]);
     }
+
+    public function getBlockPrefix()
+    {
+        return 'subscription_type';
+    }
 }
