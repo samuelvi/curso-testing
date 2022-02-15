@@ -33,7 +33,7 @@ class ProductEntity
     protected $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEntity", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEntity", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;

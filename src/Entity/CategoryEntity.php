@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,9 +23,15 @@ class CategoryEntity
      */
     protected $name;
 
+    /**
+     * @ORM\OneToMany (targetEntity="App\Entity\ProductEntity", mappedBy="category", cascade={"persist"})
+     */
+    protected $products;
+
     public function __toString()
     {
         return $this->name;
+        $this->products = new ArrayCollection();
     }
 
     /**
@@ -49,5 +56,15 @@ class CategoryEntity
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    public function setProducts($products): void
+    {
+        $this->products = $products;
     }
 }

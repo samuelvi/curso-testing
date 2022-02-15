@@ -1,0 +1,55 @@
+{% extends 'frontend/common/base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+
+    <div class="homepage">
+        {% embed "common/common/partials/_jumbotron.html.twig" %}
+            {% block subtitle %}
+                <h2>You are here: <b>List of Products</b></h2>
+            {% endblock subtitle %}
+        {% endembed %}
+
+        <div class="container product-categories">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="d-flex justify-content-start">
+                        <div class="pr-2">Categories:</div>
+                        {% for category in categories %}
+                            <div class="pl-2">
+                                <a href="{{ path('products',{'category_id' : category.id} ) }}">{{ category.name }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4">
+                        <div class="product" data-id="{{ product.id }}">
+                            <h1 class="title">{{ product.name }}</h1>
+                            <hr>
+                            <h2 class="description">{{ product.description }}</h2>
+                            <span class="category">Category: <b>{{ product.category.name }}</b></span>
+                            <span class="divider">|</span>
+                            <span class="price">Price: <b>{{ product.price }}€</b></span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="w-100">
+            <div class="d-flex justify-content-center">
+                {{ pagerfanta(products, 'twitter_bootstrap4', { 'proximity': 2}) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

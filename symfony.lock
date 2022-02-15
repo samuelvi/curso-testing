@@ -1,4 +1,7 @@
 {
+    "babdev/pagerfanta-bundle": {
+        "version": "v3.6.1"
+    },
     "behat/behat": {
         "version": "v3.10.0"
     },
@@ -171,6 +174,12 @@
     "instaclick/php-webdriver": {
         "version": "1.4.10"
     },
+    "knplabs/knp-components": {
+        "version": "v3.5.0"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.8.0"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
@@ -195,6 +204,9 @@
     },
     "nikic/php-parser": {
         "version": "v4.13.2"
+    },
+    "pagerfanta/pagerfanta": {
+        "version": "v3.5.2"
     },
     "phar-io/manifest": {
         "version": "2.0.3"
