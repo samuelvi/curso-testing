@@ -6,7 +6,7 @@ namespace App\Context\Frontend\Product\Model;
 
 final class RequestModel
 {
-    public const MAX_PER_PAGE = 10;
+    public const MAX_PER_PAGE = 9;
 
     private ?int $categoryId = null;
     private ?int $page       = null;

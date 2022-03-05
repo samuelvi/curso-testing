@@ -1,0 +1,14 @@
+App\Entity\UserEntity:
+    admin_user:
+        username: 'admin'
+        email: 'admin@admin.admin'
+        password: <hashPassword('admin')>
+        roles: '[ROLE_ADMIN]'
+        isVerified: 1
+
+    normal_user:
+        username: 'normal'
+        email: 'normal@normal.normal'
+        password: <hashPassword('normal')>
+        roles: '[ROLE_USER]'
+        isVerified: 1

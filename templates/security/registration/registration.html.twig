@@ -1,0 +1,53 @@
+{% extends 'frontend/common/base.html.twig' %}
+
+{% block title %}Registration form{% endblock %}
+
+{% block body %}
+    {% embed "common/common/partials/_jumbotron.html.twig" %}
+        {% block subtitle %}
+            <h2>Registration Form</h2>
+        {% endblock subtitle %}
+    {% endembed %}
+
+    {{ include('common/common/partials/_flash.html.twig') }}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+    <div class="container registration">
+
+        <div class="form-group">
+            {{ form_label(form.username, 'Full name') }}
+            {{ form_errors(form.username) }}
+            <div class="controls">{{ form_widget(form.username,{'attr':{'class':'form-control', 'placeholder': 'Your User name'}}) }}</div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.email, 'E-mail') }}
+            {{ form_errors(form.email) }}
+            <div class="controls">{{ form_widget(form.email,{'attr':{'class':'form-control', 'placeholder': 'your@ema.il'}}) }}</div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.plainPassword.first, 'Password') }}
+            {{ form_errors(form.plainPassword.first) }}
+            <div class="controls">{{ form_widget(form.plainPassword.first,{'attr':{'class':'form-control', 'placeholder': 'your password'}}) }}</div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.plainPassword.second, 'Repeat Password') }}
+            {{ form_errors(form.plainPassword.second) }}
+            <div class="controls">{{ form_widget(form.plainPassword.second,{'attr':{'class':'form-control', 'placeholder': 'repeat password'}}) }}</div>
+        </div>
+
+        <div class="form-check">
+            {{ form_widget(form.agreeTerms) }}
+            {{ form_label(form.agreeTerms) }}
+            {{ form_errors(form.agreeTerms) }}
+        </div>
+        <input type="submit" class="btn btn-primary" value="Register"/>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

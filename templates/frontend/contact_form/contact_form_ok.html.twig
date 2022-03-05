@@ -1,0 +1,24 @@
+{% extends 'frontend/common/base.html.twig' %}
+
+{% block title %}Contact Form Ok{% endblock %}
+
+{% block body %}
+    {% embed "common/common/partials/_jumbotron.html.twig" %}
+        {% block subtitle %}
+            <h2>You are here: <b>Contact Form managed Successfully</b></h2>
+        {% endblock subtitle %}
+    {% endembed %}
+
+    <div class="container contact">
+
+        <div class="col-xs">
+
+            <p>Your messages has been properly managed</p>
+            <p>Please check your inbox</p>
+            <p>If your didn't receive any e-mail, please check your SPAM folder.</p>
+
+            <p class="mt-2">Thank you for using our services!</p>
+
+        </div>
+    </div>
+{% endblock body %}

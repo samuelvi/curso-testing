@@ -1,32 +1,48 @@
-{% extends 'common/common/base.html.twig' %}
+{% extends 'frontend/common/base.html.twig' %}
 
 {% block title %}Sig in{% endblock %}
 
 {% block body %}
-    {{ include('common/_flash.html.twig') }}
+    {% embed "common/common/partials/_jumbotron.html.twig" %}
+        {% block subtitle %}
+            <h2>Login Form</h2>
+        {% endblock subtitle %}
+    {% endembed %}
+
+    {{ include('common/common/partials/_flash.html.twig') }}
     <form method="post" action="{{ path('app_sign_in') }}">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        <div class="container contact">
+            <div class="col-xs">
+                <p>Demo admin user/pass: admin@admin.admin/admin
             </div>
-        {% endif %}
+            <div class="col-xs">
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                </div>
 
-        <h1 class="h3 mb-3 font-weight-normal">Login form</h1>
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <div class="form-group d-flex">
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+                    <div class="mr-auto">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <input class="btn btn-lg btn-primary" type="submit" value="Acceder"></input>
+                    </div>
+                    <div class="ml-auto mt-2">
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_sign_out') }}">Logout</a>
+                            </div>
+                        {% endif %}
+                        <a href="{{ path('app_forgot_password_request') }}">Forgot password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <input class="btn btn-lg btn-primary" type="submit" value="Acceder"></input>
     </form>
 
-    <a href="{{ path('app_forgot_password_request') }}">Forgot password?</a>
 {% endblock %}

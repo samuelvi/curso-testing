@@ -4,7 +4,7 @@
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-inverse rounded">
-    <a class="navbar-brand" href="{{ url('home_page') }}">Curso Testing</a>
+    <a class="navbar-brand" href="{{ url('home_page') }}">Home Page</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,6 +13,9 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
+                <a class="nav-link" href="{{ url('products') }}">Products</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ url('contact_form') }}">Contact</a>
             </li>
             <li class="nav-item">
@@ -20,7 +23,7 @@
             </li>
             {% if app.user %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('app_logout') }}">Log Out</a>
+                    <a class="nav-link" href="{{ url('app_sign_out') }}">Log Out</a>
                 </li>
             {% else %}
                 <li class="nav-item">

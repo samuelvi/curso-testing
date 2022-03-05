@@ -1,19 +1,22 @@
-{% extends 'common/common/base.html.twig' %}
+{% extends 'frontend/common/base.html.twig' %}
 
-{% block content %}
-    <div class="legal cookies">
+{% block title %}Contact Form{% endblock %}
 
-        <h2>You are here: Terms and Conditions</h2>
+{% block body %}
+    {% embed "common/common/partials/_jumbotron.html.twig" %}
+        {% block subtitle %}
+            <h2>Terms and conditions</h2>
+        {% endblock subtitle %}
+    {% endembed %}
 
+    <div class="legal cookies mt-4">
         <div class="container legal-cookies">
-            <div class="row-fluid">
+            <div class="row">
                 <div class="col-xs-12">
                     <p>@TODO: Terms and conditions Text comes here</p>
-
                 </div>
-
             </div>
         </div>
     </div>
 
-{% endblock content %}
+{% endblock body %}

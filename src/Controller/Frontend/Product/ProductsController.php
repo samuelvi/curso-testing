@@ -36,6 +36,5 @@ class ProductsController extends AbstractController
             'products' =>  $products,
             'categories' => $this->categoryFinder->findAllCategories(),
         ]);
-
     }
 }

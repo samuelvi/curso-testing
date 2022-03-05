@@ -5,5 +5,13 @@
                 {{ message }}
             </div>
         {% endfor %}
+
+        {% if error is defined and error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% for flashError in app.flashes('reset_password_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
     </div>
 </div>

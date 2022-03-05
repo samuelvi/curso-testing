@@ -32,7 +32,7 @@ final class ProductFinder
         $this->buildConditions($qb, $requestModel);
         $qb->getQuery()->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);
 
-        $adapter = new QueryAdapter($qb);
+        $adapter = new QueryAdapter($qb, false);
         $pagerFanta = new Pagerfanta($adapter);
 
         $pagerFanta->setMaxPerPage(RequestModel::MAX_PER_PAGE);
@@ -43,7 +43,7 @@ final class ProductFinder
 
     private function buildConditions(QueryBuilder $qb, RequestModel $requestModel): void
     {
-        if ($requestModel->getCategoryId()) {
+        if ($requestModel->getCategoryId() > 0) {
             $qb->andWhere('category.id = :category_id');
             $qb->setParameter('category_id', $requestModel->getCategoryId());
         }

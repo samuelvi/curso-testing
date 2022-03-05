@@ -443,6 +443,16 @@ footer a {
     color: #ffffff;
 }
 
+.product-categories a {
+    color: white;
+    background-color: grey;
+    padding: 4px;
+}
+
+.product-categories .selected {
+    background-color: black;
+}
+
 .help-block ul li {
     color: #a94442;
 }
@@ -455,3 +465,4 @@ footer a {
 ul.legal li {
     list-style-type: none;
 }
+

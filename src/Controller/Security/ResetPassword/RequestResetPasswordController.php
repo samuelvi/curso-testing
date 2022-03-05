@@ -3,6 +3,7 @@
 namespace App\Controller\Security\ResetPassword;
 
 use App\Context\Security\Form\ResetPasswordRequestFormType;
+use App\Entity\UserEntity;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -52,7 +53,7 @@ class RequestResetPasswordController extends AbstractController
 
     private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer): RedirectResponse
     {
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+        $user = $this->getDoctrine()->getRepository(UserEntity::class)->findOneBy([
             'email' => $emailFormData,
         ]);
 

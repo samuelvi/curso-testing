@@ -32,10 +32,10 @@ class ContactFormController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->contactFormHandler->handle($form->getData());
             $parameters = $this->buildContactOkParameters();
-            return $this->redirectToRoute('last_page_ok', ['parameters' => LastPage::encodeParameters($parameters)]);
+            return $this->redirectToRoute('contact_form_ok');
         }
 
-        return $this->render('frontend/contact_form/index.html.twig', ['form' => $form->createView()]);
+        return $this->render('frontend/contact_form/contact_form.html.twig', ['form' => $form->createView()]);
     }
 
     protected function buildContactOkParameters(): array

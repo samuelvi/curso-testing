@@ -1,0 +1,53 @@
+{% extends 'frontend/common/base.html.twig' %}
+
+{% block title %}Contact Form{% endblock %}
+
+{% block body %}
+    {% embed "common/common/partials/_jumbotron.html.twig" %}
+        {% block subtitle %}
+            <h2>Contact Form</h2>
+        {% endblock subtitle %}
+    {% endembed %}
+
+    {{ form_start(form, {'action': url('contact_form'), 'method': 'POST', 'attr': {'role': 'form', 'novalidate': 'novalidate'}}) }}
+    <div class="container contact">
+        <div class="col-xs">
+            <div class="form-group">
+                {{ form_label(form.fullname, 'Full name') }}
+                {{ form_errors(form.fullname) }}
+                <div class="controls">{{ form_widget(form.fullname,{'attr':{'class':'form-control', 'placeholder': 'Chuck Norris'}}) }}</div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.email, 'E-mail') }}
+                {{ form_errors(form.email) }}
+                <div class="controls">{{ form_widget(form.email,{'attr':{'class':'form-control', 'placeholder': 'chuck_norris@hitme.com'}}) }}</div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.subject, 'Subject') }}
+                {{ form_errors(form.subject) }}
+                <div class="controls">{{ form_widget(form.subject,{'attr':{'class':'form-control', 'placeholder': 'Help me with BDD or die'}}) }}</div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.message, 'Message') }}
+                {{ form_errors(form.message) }}
+                <div class="controls">{{ form_widget(form.message,{'attr':{'class':'form-control', 'placeholder': 'I dont know about testing, teach me or suffer!'}}) }}</div>
+            </div>
+            <div class="form-check">
+                {{ form_widget(form.terms) }}
+                {{ form_label(form.terms) }}
+                {{ form_errors(form.terms) }}
+            </div>
+            <div class="form-check">
+                {{ form_widget(form.newsletter) }}
+                {{ form_label(form.newsletter) }}
+                {{ form_errors(form.newsletter) }}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Send Contact Form Request"/>
+
+
+        </div>
+    </div>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+
+{% endblock body %}

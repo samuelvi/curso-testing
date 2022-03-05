@@ -12,6 +12,6 @@ final class HomePageController extends AbstractController
      */
     public function __invoke()
     {
-        return $this->render('frontend/home_page/index.html.twig');
+        return $this->render('frontend/home_page/home_page.html.twig');
     }
 }
