@@ -36,10 +36,10 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
             //MenuItem::section('Users'),
-            MenuItem::linkToCrud('Products', 'fa fa-tags', ProductEntity::class),
-            MenuItem::linkToCrud('Categories', 'fa fa-tags', CategoryEntity::class),
-            MenuItem::linkToCrud('Subscriptions', 'fa fa-tags', SubscriptionEntity::class),
             MenuItem::linkToCrud('Users', 'fa fa-tags', UserEntity::class),
+            MenuItem::linkToCrud('Subscriptions', 'fa fa-tags', SubscriptionEntity::class),
+            MenuItem::linkToCrud('Categories', 'fa fa-tags', CategoryEntity::class),
+            MenuItem::linkToCrud('Products', 'fa fa-tags', ProductEntity::class),
         ];
     }
 

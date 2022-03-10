@@ -2,6 +2,10 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            string $screenshotsPath: '%kernel.project_dir%/var/screenshots/test/'
 
-    App\Tests\Behat\:
-        resource: '../tests/Behat/*'
+    App\Tests\:
+        resource: '../tests/*'
+        exclude:
+            - '../tests/bootstrap.php'

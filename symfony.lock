@@ -20,6 +20,9 @@
     "chekote/behat-retry-extension": {
         "version": "v1.1.1"
     },
+    "clue/stream-filter": {
+        "version": "v1.6.0"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -157,6 +160,15 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "guzzlehttp/guzzle": {
+        "version": "6.5.5"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.5.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.8.3"
+    },
     "hautelook/alice-bundle": {
         "version": "2.10",
         "recipe": {
@@ -211,8 +223,14 @@
     "php-http/discovery": {
         "version": "1.14.1"
     },
+    "php-http/guzzle6-adapter": {
+        "version": "v2.0.2"
+    },
     "php-http/httplug": {
         "version": "2.2.0"
+    },
+    "php-http/message": {
+        "version": "1.13.0"
     },
     "php-http/message-factory": {
         "version": "v1.0.2"
@@ -278,6 +296,9 @@
     },
     "psr/log": {
         "version": "2.0.0"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "rpkamp/mailhog-behat-extension": {
         "version": "0.6.7"

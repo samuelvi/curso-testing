@@ -1,0 +1,8 @@
+default:
+    suites:
+        frontend_routing:
+            paths: [ ./tests/Functional/Frontend/Routing/Features ]
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - App\Tests\Common\Context\UtilsContext
+                - App\Tests\Functional\Frontend\Routing\Features\Context\RoutingContext
