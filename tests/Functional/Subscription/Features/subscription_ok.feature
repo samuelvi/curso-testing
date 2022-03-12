@@ -1,4 +1,4 @@
-# ./bin/behat --config app/config/behat.yml --suite=subscription
+# ./vendor/bin/behat --config app/config/behat.yml --suite=subscription
 Feature: Subscribe to media
   In order to get subscribed
   As an anonymous user

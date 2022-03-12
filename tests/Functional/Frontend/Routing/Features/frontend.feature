@@ -1,13 +1,17 @@
-# ./vendor/behat/behat/bin/behat --config=tests/Functional/behat.yaml --suite=frontend_routing --tags=ROUTING --tags=FRONTEND
+# ./vendor/bin/behat --config=tests/Functional/behat.yaml --suite=frontend_routing --tags=ROUTING --tags=FRONTEND
 @FRONTEND
 @ROUTING
+#@javascript
 Feature: Public web navigation
-  In order to visit the public demo web site
+  In order to visit the public web site
   As an anonymous user
-  I am able to watch all frontend sections
+  I should be able to navigate throught out all the frontend sections
 
+  # DRY: Background helps us to not repeating duplicated code.
   Background:
-    Given I go to homepage
+    Given I go to the homepage
+    # Equivalent: Given I am on homepage
+    # Equivalent: Given I am to the homepage
 
   Scenario: Visit the homepage
     # the html tags are stripped by Mink: <b>Curso Testing</b>
@@ -21,7 +25,7 @@ Feature: Public web navigation
   # Aquí nos petará si no existe la base de datos
   Scenario: Visit the products page
     When  I follow "Products"
-    Then  the url should match "/poducts"
+    Then  the url should match "/products"
     Then  I should see "You are here: List of Products"
 
   Scenario: Visit the registration page
@@ -32,7 +36,7 @@ Feature: Public web navigation
   Scenario: Visit the login form page
     When  I follow "Sign In"
     Then  the url should match "/sign-in"
-    And   I should see "You are here: Sign Form"
+    And   I should see "You are here: Sign in Form"
 
   Scenario: Visit the request reset password page
     When  I follow "Sign In"

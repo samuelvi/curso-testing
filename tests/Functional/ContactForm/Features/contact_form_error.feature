@@ -1,4 +1,4 @@
-# ./bin/behat --config app/config/behat.yml --suite=contact_form --tags=CONTACT_FORM_ERROR
+# ./vendor/bin/behat --config app/config/behat.yml --suite=contact_form --tags=CONTACT_FORM_ERROR
 
 @CONTACT_FORM_ERROR
 Feature: Check that users can not contact us from the contact form
@@ -11,7 +11,7 @@ Feature: Check that users can not contact us from the contact form
     And  I follow "Contact"
     Then I should see "You are here: Contact Form"
 
-  # ./bin/behat --config app/config/behat.yml --suite=contact_form --tags=CONTACT_FORM_ERROR --tags=EMPTY_FIELDS
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=contact_form --tags=CONTACT_FORM_ERROR --tags=EMPTY_FIELDS
   @EMPTY_FIELDS
   Scenario: Check validation for empty fields
     And  I press "Send Contact Form Request"
@@ -22,7 +22,7 @@ Feature: Check that users can not contact us from the contact form
     And  I should see "You must accept terms and conditions"
     And  I should see an error mask next to "The e-mail can not be empty"
 
-  # ./bin/behat --config app/config/behat.yml --suite=contact_form --tags=CONTACT_FORM_ERROR --tags=EMAIL_NOT_VALID
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=contact_form --tags=CONTACT_FORM_ERROR --tags=EMAIL_NOT_VALID
   @EMAIL_NOT_VALID
   Scenario: Check validation for e-mail not valid
     And  I fill in "E-mail" with "this-is-not-a-valid-e-mail-address"

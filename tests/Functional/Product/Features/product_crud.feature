@@ -1,4 +1,4 @@
-# ./bin/behat --config app/config/behat.yml --suite=product --tags=CRUD
+# ./vendor/bin/behat --config app/config/behat.yml --suite=product --tags=CRUD
 @BACKEND
 @PRODUCT
 @CRUD
@@ -14,7 +14,7 @@ Feature: CRUD on Backend
     Then  I should see "Mink Behat Admin Dashboard"
     When  I follow "Product"
 
-  # ./bin/behat --config app/config/behat.yml --suite=product --tags=LIST
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=product --tags=LIST
   @LIST
   Scenario: List products from backend
     Given The following films
@@ -25,7 +25,7 @@ Feature: CRUD on Backend
     When I reload the page
     Then I should see "1 - 15 of 108"
 
-  # ./bin/behat --config app/config/behat.yml --suite=product --tags=ADD
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=product --tags=ADD
   @ADD
   Scenario Outline: Add a product from backend
     When I follow "Add Product"
@@ -41,7 +41,7 @@ Feature: CRUD on Backend
       | Rambo                          | 10    | Silvester... | Films    |
       | The Delta Force                | 55    | A film...    | Films    |
 
-  # ./bin/behat --config app/config/behat.yml --suite=product --tags=FILTER
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=product --tags=FILTER
   @FILTER
   Scenario: Check existing products appear in the list page
     And I fill the text "Rocky" in the search box
@@ -52,7 +52,7 @@ Feature: CRUD on Backend
       | Rocky II | 19.95 | Films    |
       | Rocky V  | 14.85 | Films    |
 
-  # ./bin/behat --config app/config/behat.yml --suite=product --tags=UPDATE
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=product --tags=UPDATE
   @UPDATE
   Scenario: Change the description for one product
     When I fill the text "Rocky" in the search box
@@ -78,7 +78,7 @@ Feature: CRUD on Backend
     And I press "Save changes"
     Then I should see a row with name "Rocky V (Five)", price "10.25" and category "Books"
 
-  # ./bin/behat --config app/config/behat.yml --suite=product --tags=DELETE
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=product --tags=DELETE
   @DELETE
   @javascript
   Scenario: Delete a product

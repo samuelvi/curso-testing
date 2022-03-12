@@ -1,4 +1,4 @@
-# ./bin/behat --config app/config/behat.yml --suite=contact_form --tags=CONTACT_FORM_OK
+# ./vendor/bin/behat --config app/config/behat.yml --suite=contact_form --tags=CONTACT_FORM_OK
 @CONTACT_FORM_OK
 @FRONTEND
 Feature: Check that users can contact us from the contact form
@@ -6,7 +6,7 @@ Feature: Check that users can contact us from the contact form
   As an anonymous or logged user
   I complete and send a contact form request
 
-  # ./bin/behat --config app/config/behat.yml --suite=contact_form --tags=FRONTEND --tags=OK
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=contact_form --tags=FRONTEND --tags=OK
   @OK
   Scenario: Send a contact form request
     When I go to homepage
@@ -26,7 +26,7 @@ Feature: Check that users can contact us from the contact form
     And  I press "Send Contact Form Request"
     Then I should see "Your messages has been properly managed"
 
-  # ./bin/behat --config app/config/behat.yml --suite=contact_form --tags=EMAIL
+  # ./vendor/bin/behat --config app/config/behat.yml --suite=contact_form --tags=EMAIL
   @EMAIL
   @mink:symfony2
   Scenario: Check 2 e-mails are sent when contact form request submission

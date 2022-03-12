@@ -1,4 +1,4 @@
-# ./bin/behat --config app/config/behat.yml --suite=subscription
+# ./vendor/bin/behat --config app/config/behat.yml --suite=subscription
 Feature: Validate media subscription
   In order to get subscribed
   As an anonymous user
@@ -23,5 +23,5 @@ Feature: Validate media subscription
 
     When I check "Accept terms and conditions"
     And  I press "Request Subscription Registration"
-    
+
     Then I should see after a while "Subscription successfully created"
