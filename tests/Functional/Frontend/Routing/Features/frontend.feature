@@ -11,6 +11,7 @@ Feature: Public web navigation
   Background:
     # Must be set up base_url in behat.yaml
     Given I go to the homepage
+    # Given I go to "http://test.cursotesting.local"
     And   I navigate from a desktop browser
     # Equivalent: Given I am on homepage
     # Equivalent: Given I am to the homepage
