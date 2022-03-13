@@ -1,0 +1,144 @@
+version: "3.7"
+
+services:
+    nginx:
+        build: nginx
+        container_name: curso_testing_nginx
+        volumes:
+            - curso_testing_system:/var/www/html/:cached
+        ports:
+            - 8000:80
+            - 8001:81
+        networks:
+            default:
+                aliases:
+                    - dev.cursosymfonyfue.local
+                    - test.cursosymfonyfue.local
+
+    fpm:
+        build: php-fpm
+        container_name: curso_testing_php_fpm
+#        environment:
+#            - MY_ENV_VAR=mysql://root:root@db/
+        volumes:
+            - curso_testing_system:/var/www/html/:cached
+
+    mariadb:
+        image: mariadb:10.5
+        container_name: curso_testing_mariadb
+        volumes:
+            - ./mariadb/conf:/etc/mysql/mariadb.conf.d/:delegated
+            - ./mariadb/migrations:/docker-entrypoint-initdb.d
+            - curso_testing_mariadb:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        user: mysql
+        ports:
+            - '3306:3306'
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: curso_testing_phpmyadmin
+        environment:
+            PMA_HOST: mariadb
+            PMA_PORT: 3306
+        ports:
+            - '8080:80'
+        links:
+            - mariadb
+
+    mailhog_dev:
+        container_name: curso_testing_mailhog_dev
+        image: mailhog/mailhog
+        logging:
+            driver: 'none'  # disable saving logs
+        ports:
+            - 1025:1025 # smtp server
+            - 8025:8025 # web ui
+
+    mailhog_test:
+        container_name: curso_testing_mailhog_test
+        image: mailhog/mailhog
+        logging:
+            driver: 'none'  # disable saving logs
+        ports:
+            - 1026:1025 # smtp server
+            - 8026:8025 # web ui
+
+#    hub:
+#        image: selenium/hub:3.8.1
+#        container_name: curso_testing_selenium_hub
+#        environment:
+#            - TZ=Europe/Amsterdam
+#            - GRID_TIMEOUT=90
+#        ports:
+#            - 4444:4444
+#        networks:
+#            - curso_testing_symfony
+#
+#    firefox:
+#        image: selenium/node-firefox-debug:3.8.1
+#        container_name: curso_testing_selenium_firefox
+#        links:
+#            - hub:hub
+#        environment:
+#            - TZ=Europe/Amsterdam
+#            - SCREEN_WIDTH=1600
+#            - SCREEN_HEIGHT=900
+#        ports:
+#            - 5901:5900
+#        networks:
+#            - curso_testing_symfony
+#
+#    chrome:
+#        image: selenium/node-chrome-debug:3.8.1
+#        container_name: curso_testing_selenium_chrome
+#        links:
+#            - hub:hub
+#        environment:
+#            - TZ=Europe/Amsterdam
+#            - SCREEN_WIDTH=1600
+#            - SCREEN_HEIGHT=900
+#        ports:
+#            - 5900:5900
+#        volumes:
+#            - /dev/shm:/dev/shm
+#        privileged: true
+#        networks:
+#            - curso_testing_symfony
+
+#    firefox:
+#        image: selenium/node-firefox:3.8.1
+#        links:
+#            - hub:hub
+#        environment:
+#            - TZ=Europe/Amsterdam
+#            - SCREEN_WIDTH=1600
+#            - SCREEN_HEIGHT=900
+#
+#    chrome:
+#        image: selenium/node-chrome:3.8.1
+#        links:
+#            - hub:hub
+#        environment:
+#            - TZ=Europe/Madrid
+#            - SCREEN_WIDTH=1600
+#            - SCREEN_HEIGHT=900
+#        volumes:
+#            - /dev/shm:/dev/shm
+#        privileged: true
+
+volumes:
+    curso_testing_system:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: "${PWD}"
+
+    curso_testing_mariadb:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: "${PWD}/docker/mariadb/db"

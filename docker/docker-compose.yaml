@@ -1,0 +1,77 @@
+version: '3.4'
+
+services:
+
+    apache:
+        build: apache2/
+        container_name: ct_apache2
+        ports:
+            - '8000:80'
+            - '8001:81'
+        volumes:
+            - ./../docker/apache2/vhosts:/etc/apache2/sites-enabled
+            - ./../:/var/www/html
+        depends_on:
+            - php
+            - mariadb
+        networks:
+            default:
+                aliases:
+                    - dev.cursotesting.local
+                    - test.cursotesting.local
+
+    php:
+        build: php/
+        container_name: ct_php
+        extra_hosts:
+            -   "host.docker.internal:host-gateway"
+        volumes:
+            - ./../:/var/www/html
+        depends_on:
+            - mariadb
+        user: www-data
+        # entrypoint: sh -c "./docker/php/init.sh"
+        tty: true
+        stdin_open: true
+
+    mariadb:
+        image: mariadb:10.5
+        container_name: ct_mariadb
+        volumes:
+            - ./mariadb/conf:/etc/mysql/mariadb.conf.d/:delegated
+            - ./mariadb/migrations:/docker-entrypoint-initdb.d
+            -  ./../docker/mariadb/data/db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        user: mysql
+        ports:
+            - '3306:3306'
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: ct_phpmyadmin
+        environment:
+            PMA_HOST: mariadb
+            PMA_PORT: 3306
+        ports:
+            - '8080:80'
+        links:
+            - mariadb
+
+    mailhog_dev:
+        container_name: ct_mailhog_dev
+        image: mailhog/mailhog
+        logging:
+            driver: 'none'  # disable saving logs
+        ports:
+            - 1025:1025 # smtp server
+            - 8025:8025 # web ui
+
+    mailhog_test:
+        container_name: ct_mailhog_test
+        image: mailhog/mailhog
+        logging:
+            driver: 'none'  # disable saving logs
+        ports:
+            - 1026:1025 # smtp server
+            - 8026:8025 # web ui

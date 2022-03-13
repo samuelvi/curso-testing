@@ -6,4 +6,5 @@ use Behat\Behat\Context\Context;
 
 class RoutingContext implements Context
 {
+
 }

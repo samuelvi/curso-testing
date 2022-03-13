@@ -20,4 +20,7 @@
 #
 
 # CUSTOM
-docker/mariadb/db
+data/db
+docker/mariadb/data/db
+docker/mariadb_test/data/db
+_docker

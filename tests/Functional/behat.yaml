@@ -21,7 +21,7 @@ default:
 
         # EXTENSIONES PARA WEBTESTING
         Behat\MinkExtension:
-
+            base_url: http://test.cursotesting.local
             default_session: symfony
             javascript_session: selenium2
 
@@ -32,7 +32,7 @@ default:
                     symfony: ~
                 selenium2:
                     selenium2:
-                        wd_host: "http://curso_testing_selenium_hub:4444/wd/hub"
+                        wd_host: "http://localhost:4444/wd/hub"
                         capabilities: {"browserName": "chrome", "browser": "chrome", "version": "96", 'chrome': {'switches':['--no-sandbox', '--headless'], 'prefs': {'foo': 'bar'}}}
             browser_name: "chrome"
 
@@ -54,7 +54,7 @@ default:
             purge_tag: email # optional, defaults to 'email'
 
 # Si se desea lanzar los tests con Firefox, usamos un nuevo perfil, éste hereda de default y sobreescribe los parámetros definidos. Ej: "behat -p firefox"
-chrome:
-    extensions:
-        Behat\MinkExtension:
-            browser_name: firefox
+#chrome:
+#    extensions:
+#        Behat\MinkExtension:
+#            browser_name: firefox

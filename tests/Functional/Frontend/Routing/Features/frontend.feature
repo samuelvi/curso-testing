@@ -1,7 +1,7 @@
 # ./vendor/bin/behat --config=tests/Functional/behat.yaml --suite=frontend_routing --tags=ROUTING --tags=FRONTEND
 @FRONTEND
 @ROUTING
-#@javascript
+@javascript
 Feature: Public web navigation
   In order to visit the public web site
   As an anonymous user
@@ -9,7 +9,9 @@ Feature: Public web navigation
 
   # DRY: Background helps us to not repeating duplicated code.
   Background:
+    # Must be set up base_url in behat.yaml
     Given I go to the homepage
+    And   I navigate from a desktop browser
     # Equivalent: Given I am on homepage
     # Equivalent: Given I am to the homepage
 
