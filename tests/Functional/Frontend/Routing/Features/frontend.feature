@@ -1,7 +1,7 @@
 # ./vendor/bin/behat --config=tests/Functional/behat.yaml --suite=frontend_routing --tags=ROUTING --tags=FRONTEND
 @FRONTEND
 @ROUTING
-@javascript
+# @javascript
 Feature: Public web navigation
   In order to visit the public web site
   As an anonymous user

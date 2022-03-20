@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Common\Context;
 
@@ -42,5 +44,31 @@ final class UtilsContext extends UtilsRawContext
         if ($this->supportsJavaScript()) {
             $this->getSession()->resizeWindow(768, 1024);
         }
+    }
+
+    /**
+     * @When /^I scroll to "([^"]*)"$/
+     */
+    public function iScrollTo($text)
+    {
+        $text = str_replace('\\"', '"', $text);
+        $page = $this->getSession()->getPage();
+
+        $element = $page->find('named', ['content', $text]);
+        if (null === $element) {
+            $element = $page->find('xpath', sprintf('//*[@value="%s"]', $text));
+        }
+
+        // DOES NOT WORK: $element->focus()
+
+        // DO WORK:
+        $selector =$element->getXpath();
+        $function = <<<JS
+            (function() {
+              var elem = document.evaluate('$selector', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+              elem.scrollIntoView();
+            })()
+JS;
+        $this->getSession()->executeScript($function);
     }
 }

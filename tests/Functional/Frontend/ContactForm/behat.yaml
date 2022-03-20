@@ -1,0 +1,9 @@
+default:
+    suites:
+        frontend_contact_form:
+            paths: [ ./tests/Functional/Frontend/ContactForm/Features ]
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - App\Tests\Common\Context\UtilsContext
+                - App\Tests\Functional\Frontend\ContactForm\Contexts\ContactFormContext
+                - rpkamp\Behat\MailhogExtension\Context\MailhogContext

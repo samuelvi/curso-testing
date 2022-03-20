@@ -1,0 +1,16 @@
+version: '3.9'
+
+volumes:
+    apache:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: addr=host.docker.internal,rw,noacl,nocto,noatime,nodiratime,soft,nolock,rsize=32768,wsize=32768,intr,tcp,nfsvers=3,actimeo=2
+            device: ":${PWD}"
+
+    mariadb:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: addr=host.docker.internal,rw,noacl,nocto,noatime,nodiratime,soft,nolock,rsize=32768,wsize=32768,intr,tcp,nfsvers=3,actimeo=2
+            device: ":${PWD}/docker/mariadb/db"

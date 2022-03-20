@@ -31,23 +31,9 @@ class ContactFormController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->contactFormHandler->handle($form->getData());
-            $parameters = $this->buildContactOkParameters();
             return $this->redirectToRoute('contact_form_ok');
         }
 
         return $this->render('frontend/contact_form/contact_form.html.twig', ['form' => $form->createView()]);
-    }
-
-    protected function buildContactOkParameters(): array
-    {
-        return [
-            'response' => 'OK',
-            'flashbag' => [
-                'success' => 'Your messages was managed successfully',
-            ],
-            'title' => 'You are here: Contact Form Submission',
-            'messages' => ['Your messages has been properly managed', 'Please check your inbox', 'If your didn\'t receive any e-mail, please check your SPAM folder.'],
-            'footer' => 'Thank you for using our services!',
-        ];
     }
 }

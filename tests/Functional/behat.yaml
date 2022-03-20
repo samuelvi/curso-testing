@@ -1,6 +1,7 @@
 # ./vendor/bin/behat --config=tests/Functional/behat.yaml
 imports:
     - tests/Functional/Frontend/Routing/behat.yaml
+    - tests/Functional/Frontend/ContactForm/behat.yaml
 
 default:
 
@@ -50,7 +51,7 @@ default:
 
         # COMPROBACIÓN EMAILS ENTORNO TEST
         rpkamp\Behat\MailhogExtension:
-            base_url: http://mailhog_test:8025
+            base_url: http://ct_mailhog_test:8025
             purge_tag: email # optional, defaults to 'email'
 
 # Si se desea lanzar los tests con Firefox, usamos un nuevo perfil, éste hereda de default y sobreescribe los parámetros definidos. Ej: "behat -p firefox"

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Functional\Frontend\Routing\Features\Context;
+namespace App\Tests\Functional\Frontend\Routing\Contexts;
 
 use Behat\Behat\Context\Context;
 

@@ -5,4 +5,4 @@ default:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - App\Tests\Common\Context\UtilsContext
-                - App\Tests\Functional\Frontend\Routing\Features\Context\RoutingContext
+                - App\Tests\Functional\Frontend\Routing\Contexts\RoutingContext
