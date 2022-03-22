@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Tests\Functional\Product\Features\Context;
+namespace App\Tests\Functional\Backend\Features\Context;
 
-use Behat\Gherkin\Node\PyStringNode;
-use AppBundle\Entity\Product;
 use App\Tests\Functional\AbstractFeatureContext;
 use App\Tests\Functional\DataFixturesTrait;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\Behat\Tester\Exception\PendingException;
+use AppBundle\Entity\Product;
 use Behat\Behat\Context\Context;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
 use Doctrine\ORM\EntityManager;
+use PHPUnit_Framework_Assert as phpUnit;
 use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
-
-use \PHPUnit_Framework_Assert as phpUnit;
 
 class FeatureContext extends AbstractFeatureContext implements Context
 {

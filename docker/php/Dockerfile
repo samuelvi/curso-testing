@@ -1,5 +1,5 @@
 ##################################################################################################################
-FROM php:7.4.23-fpm
+FROM php:8.1.4-fpm
 
 # Install Composer
 RUN cd /tmp && curl -sS https://getcomposer.org/installer > composer.phar && \
@@ -104,10 +104,16 @@ RUN apt-get update && apt-get install -y procps
 # INSTALL REDIS
 RUN pecl install redis && docker-php-ext-enable redis
 
-# INSTALL XDEBUG
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-
 RUN docker-php-ext-install pdo pdo_mysql opcache zip
+
+RUN apt-get install -y libicu-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl
+
+# INSTALL XDEBUG
+RUN pecl install xdebug
+# DO NOT ENABLE xdebug
+# RUN docker-php-ext-enable xdebug
 
 COPY conf/php.ini /usr/local/etc/php/php.ini
 COPY conf/php-fpm-pool.conf /usr/local/etc/php/pool.d/www.conf

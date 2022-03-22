@@ -4,15 +4,13 @@ Feature: Product Workflow
   I should be able to create a product in the backend and then make it visible to everyone
 
   Scenario: Add a product from backend and list it in frontend
-    Given I go to homepage
-    When  I follow "Login"
+    Given I go to "http://test.cursotesting.local/sign-in"
+    And   I fill in "Username" with "admin@admin.admin"
+    And   I fill in "Password" with "admi"
+    When  I press "Sign in"
+    Then  I should see "Welcome admin to the Backend Dashboard"
 
-    And   I fill in "Username" with "admin"
-    And   I fill in "Password" with "admin"
-    And   I press "Log in"
-    Then  I should see "Mink Behat Admin Dashboard"
-
-    When  I follow "Product"
+    When  I follow "Products"
     And   I follow "Add Product"
     Then  I should see "Create Product"
     And   I fill in "Name" with "The Delta force"

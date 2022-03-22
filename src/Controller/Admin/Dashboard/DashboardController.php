@@ -32,15 +32,13 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        return [
-            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
-            //MenuItem::section('Users'),
-            MenuItem::linkToCrud('Users', 'fa fa-tags', UserEntity::class),
-            MenuItem::linkToCrud('Subscriptions', 'fa fa-tags', SubscriptionEntity::class),
-            MenuItem::linkToCrud('Categories', 'fa fa-tags', CategoryEntity::class),
-            MenuItem::linkToCrud('Products', 'fa fa-tags', ProductEntity::class),
-        ];
+        yield MenuItem::linkToCrud('Users', 'fa fa-tags', UserEntity::class);
+//            MenuItem::linkToCrud('Subscriptions', 'fa fa-tags', SubscriptionEntity::class),
+//            MenuItem::linkToCrud('Categories', 'fa fa-tags', CategoryEntity::class),
+        yield  MenuItem::linkToCrud('Products', 'fa fa-tags', ProductEntity::class);
+
     }
 
     public function configureDashboard(): Dashboard
@@ -62,6 +60,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureActions(): Actions
     {
-        return parent::configureActions()->add(Crud::PAGE_INDEX, Action::DETAIL);
+        return parent::configureActions();
+        //return parent::configureActions()->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 }

@@ -1,8 +1,8 @@
 {# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
-{% block page_title 'Bienvenid@' %}
+{% block page_title 'Welcome to the Backend Dashboard' %}
 
 {% block page_content %}
-    Welcome
+    Welcome <b>{{ app.user.username }}</b> to the Backend Dashboard
 {% endblock %}

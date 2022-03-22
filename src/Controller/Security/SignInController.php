@@ -15,7 +15,7 @@ class SignInController extends AbstractController
     public function __invoke(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('app_admin_dashboard');
         }
 
         // get the login error if there is one

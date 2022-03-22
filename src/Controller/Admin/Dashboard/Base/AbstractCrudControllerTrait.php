@@ -10,16 +10,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 trait AbstractCrudControllerTrait
 {
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions->reorder(Crud::PAGE_INDEX, [Action::EDIT, Action::DETAIL, Action::DELETE]);
-    }
+//    public function configureActions(Actions $actions): Actions
+//    {
+//        return $actions->reorder(Crud::PAGE_INDEX, [Action::EDIT, Action::DETAIL, Action::DELETE]);
+//    }
 
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
             ->showEntityActionsInlined()
+            ->setEntityPermission('ROLE_ADMIN')
         ;
     }
-
 }
