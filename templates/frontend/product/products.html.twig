@@ -45,6 +45,10 @@
                             <span class="price">Price: <b>{{ product.price }}€</b></span>
                         </div>
                     </div>
+                {% else %}
+                    <div class="col auto text-center">
+                        <p><b>No products found :(</b></p>
+                    </div>
                 {% endfor %}
             </div>
         </div>

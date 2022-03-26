@@ -43,6 +43,15 @@ class ProductEntity
      */
     protected $createdAt;
 
+    /**
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    protected $enabled;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function __toString()
     {
@@ -135,5 +144,15 @@ class ProductEntity
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled($enabled): void
+    {
+        $this->enabled = $enabled;
     }
 }

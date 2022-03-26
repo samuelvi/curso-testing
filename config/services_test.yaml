@@ -4,6 +4,7 @@ services:
         autoconfigure: true
         bind:
             string $screenshotsPath: '%kernel.project_dir%/var/screenshots/test/'
+            string $kernelEnvironment: '%kernel.environment%'
 
     App\Tests\:
         resource: '../tests/*'

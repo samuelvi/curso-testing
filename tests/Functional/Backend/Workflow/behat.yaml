@@ -1,0 +1,9 @@
+default:
+    suites:
+        backend_workflow:
+            paths: [ ./tests/Functional/Backend/Workflow/Features ]
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - App\Tests\Common\Context\UtilsContext
+                - App\Tests\Functional\Backend\Workflow\Context\InitializationContext
+                - App\Tests\Functional\Backend\Workflow\Context\WorkflowContext

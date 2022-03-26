@@ -2,6 +2,7 @@
 imports:
     - tests/Functional/Frontend/Routing/behat.yaml
     - tests/Functional/Frontend/ContactForm/behat.yaml
+    - tests/Functional/Backend/Workflow/behat.yaml
 
 default:
 
