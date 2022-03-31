@@ -23,6 +23,7 @@ final class InitializationContext extends RawMinkContext
         if (in_array('IGNORE_DATA_FIXTURES', $event->getScenario()->getTags())) {
             return;
         }
+
         $this->dataFixturesInitializer->initialize();
     }
 }

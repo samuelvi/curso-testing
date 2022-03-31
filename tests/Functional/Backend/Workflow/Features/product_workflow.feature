@@ -1,18 +1,21 @@
 # ./vendor/bin/behat --config=tests/Functional/behat.yaml --suite=backend_workflow
 
+# Nos hará falta @javascript, ya que el formulario tiene funcionalidades en Javascript
+# Tendremos que levantar selenium
+@javascript
 Feature: Product Workflow
   In order to offer a user a new product
   As an admin user
   I should be able to create a product in the backend and then make it visible to everyone
 
   Scenario: Initialize Scenario and check no products are found
-    Given I go to "http://test.cursotesting.local/products"
+    Given I go to "http://test.cursotesting.local:81/products"
     Then  I should see "No products found :("
 
   # Con Ignore Data Fixtures indicamos que no hace falta "hidratar" la base de datos de nuevo.
   @IGNORE_DATA_FIXTURES
   Scenario: Add a product from backend and list it in frontend
-    Given I go to "http://test.cursotesting.local/sign-in"
+    Given I go to "http://test.cursotesting.local:81/sign-in"
     And   I fill in "Email" with "admin@admin.admin"
     And   I fill in "Password" with "admin"
     When  I press "Sign in"
@@ -21,14 +24,27 @@ Feature: Product Workflow
     # COMPROBAMOS HTML
     Then  the response should contain "Welcome <b>admin</b> to the Backend Dashboard"
 
+    # Con esta opción tenemos desplegado el menú, sino tendríamos que hacer clic sobre el menú hamburguesa
+    # And   I navigate from a desktop browser
+    # O Creamos un CREAR: CUSTOM STEP DEFINTION
+    And   I navigate from a tablet device
+    And   I press on the Navigation Toggler
+
     When  I follow "Products"
+
     Then  I should see "ProductEntity"
     And   I should see "No results found."
-    When   I follow "Add ProductEntity"
-#    Then  I should see "Create Product"
-#    And   I fill in "Name" with "The Delta force"
-#    And   I fill in "Price" with "55"
-#    And   I fill in "Description" with "A film about terrorists and airplane hijacking"
+    When  I follow "Add ProductEntity"
+    Then  I should see "Create ProductEntity"
+    And   I fill in "Name" with "The Delta force"
+
+    # No funciona, puesto que es un WYSIWYG => CREAR: CUSTOM STEP DEFINTION
+    # And   I fill in "Description" with "TA film about terrorists and airplane hijacking"
+    And   I fill the WYSIWYG "Description" with "A film about terrorists and airplane hijacking"
+
+    And   I fill in "Price" with "55"
+    And   I take a screenshot "prueba"
+
 #    And   I select "Films" from "Category"
 #    And   I press "Save changes"
 #    When  I go to homepage

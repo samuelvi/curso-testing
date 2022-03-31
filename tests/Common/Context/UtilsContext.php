@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Common\Context;
 
 use Behat\Behat\Hook\Scope\AfterStepScope;
+use PHPUnit\Framework\Assert;
 
 final class UtilsContext extends UtilsRawContext
 {
@@ -70,5 +71,16 @@ final class UtilsContext extends UtilsRawContext
             })()
 JS;
         $this->getSession()->executeScript($function);
+    }
+
+    /**
+     * @When /^I click on "([^"]*)"$/
+     */
+    public function iClickOn($text)
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->find('xpath', sprintf('//*[text()[contains(.,"%s")]]', $text));
+        $this->takeAScreenshot('aaa');
+        $element->click();
     }
 }

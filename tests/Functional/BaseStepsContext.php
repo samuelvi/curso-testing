@@ -6,8 +6,8 @@ use Behat\Behat\Hook\Scope\AfterStepScope;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Driver\BrowserKitDriver;
 use Behat\Mink\Driver\Selenium2Driver;
-use \PHPUnit_Framework_Assert as phpUnit;
 use Symfony\Component\BrowserKit\Client;
+use PHPUnit\Framework\Assert;
 
 class BaseStepsContext extends AbstractFeatureContext
 {
@@ -140,17 +140,6 @@ class BaseStepsContext extends AbstractFeatureContext
         $client = $driver->getClient();
         $client->followRedirects(true);
         $client->followRedirect();
-    }
-
-    /**
-     * @When /^I click on "([^"]*)"$/
-     */
-    public function iClickOn($text)
-    {
-        $page = $this->getSession()->getPage();
-        $element = $page->find('xpath', sprintf('//*[text()[contains(.,"%s")]]', $text));
-        phpUnit::assertTrue($element->isVisible());
-        $element->click();
     }
 
     /**
