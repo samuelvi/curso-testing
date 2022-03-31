@@ -17,6 +17,7 @@ class DataFixturesInitializer
     {
         $files = [
             __DIR__ . '/Data/user.yaml',
+            __DIR__ . '/Data/category.yaml',
         ];
 
         $this->dataFixturesLoader->load($files);

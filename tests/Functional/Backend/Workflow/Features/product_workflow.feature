@@ -43,10 +43,17 @@ Feature: Product Workflow
     And   I fill the WYSIWYG "Description" with "A film about terrorists and airplane hijacking"
 
     And   I fill in "Price" with "55"
-    And   I take a screenshot "prueba"
 
-#    And   I select "Films" from "Category"
-#    And   I press "Save changes"
+    # Falla, puesto que no es un select normal
+    # And   I select "action" from "Category"
+    And   I choose "action" from "Category"
+
+    And   I press "Create"
+
+    And   print current URL
+    And   I should see 1 row
+    And   I should see "The Delta force" for the column "Name" in the row 1
+
 #    When  I go to homepage
 #    And   I follow "List Products"
 #    Then  I should see listed first the product with name "The Delta force", price "55.00", category "Films" and description "A film about terrorists and airplane hijacking"

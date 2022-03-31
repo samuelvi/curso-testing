@@ -44,7 +44,6 @@ final class ProductEntityController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        Yield IdField::new('id');
             Yield TextField::new('name');
             Yield TextEditorField::new('description');
             Yield TextField::new('price');

@@ -1,0 +1,9 @@
+App\Entity\CategoryEntity:
+    category_terror:
+        name: terror
+
+    category_action:
+        name: action
+
+    category_compedy:
+        name: comedy
