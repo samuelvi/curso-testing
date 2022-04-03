@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <td>Name:</td>
+        <td>{{ product.name }}</td>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td>{{ product.description }}</td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td>{{ product.price }}</td>
+    </tr>
+    <tr>
+        <td>State:</td>
+        <td>{{ product.enabled?'yes':'no' }}</td>
+    </tr>
+    <tr>
+        <td>Created At:</td>
+        <td>{{ product.createdAt | date('Y-m-d H:i:s') }}</td>
+    </tr>
+</table>

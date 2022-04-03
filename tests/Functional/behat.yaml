@@ -23,7 +23,8 @@ default:
 
         # EXTENSIONES PARA WEBTESTING
         Behat\MinkExtension:
-            base_url: http://test.cursotesting.local
+            # Importante indicar el puerto (a no ser que definamos un proxy inverso)
+            base_url: http://test.cursotesting.local:81
             default_session: symfony
             javascript_session: selenium2
 
