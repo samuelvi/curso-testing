@@ -94,8 +94,4 @@ Feature: Product Workflow
     Then  I should see "Price: 55.00€"
 
 
-  # EJERCICIO: Desactivar el producto y ver que:
-  # - en base de datos está desactivado
-  # - en listado de backend está desactivado
-  # - en la parte del frontend está desactivado
-  #  - sale desactivaado en la edición de product
+
