@@ -7,12 +7,14 @@ namespace App\Controller\Admin\Dashboard;
 use App\Controller\Admin\Dashboard\Base\AbstractCrudControllerTrait;
 use App\Entity\CategoryEntity;
 use App\Entity\ProductEntity;
+use App\Repository\Product\Resolver\IsDisplayableResolver;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,14 +46,16 @@ final class ProductEntityController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-            Yield TextField::new('name');
-            Yield TextEditorField::new('description');
-            Yield TextField::new('price');
-            Yield BooleanField::new('enabled');
-            Yield AssociationField::new('category')->setQueryBuilder(
-                fn (QueryBuilder $queryBuilder) => $queryBuilder->getEntityManager()
-                                                                ->getRepository(CategoryEntity::class)
-                                                                ->findAll()
-            );
+        yield TextField::new('name');
+        yield TextEditorField::new('description');
+        yield NumberField::new('price');
+        yield BooleanField::new('enabled');
+        yield BooleanField::new('displayable')->hideOnForm()->renderAsSwitch(false);
+        yield AssociationField::new('category')->setQueryBuilder(
+            fn(QueryBuilder $queryBuilder) => $queryBuilder->getEntityManager()
+                ->getRepository(CategoryEntity::class)
+                ->findAll()
+        );
     }
+
 }

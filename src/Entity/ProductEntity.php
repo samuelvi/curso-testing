@@ -15,38 +15,43 @@ class ProductEntity
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected int $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
-    protected $name;
+    protected string $name = '';
 
     /**
-     * @ORM\Column(type="decimal", scale=2)
+     * @ORM\Column(type="decimal", scale=2, nullable=false)
      */
-    protected $price;
+    protected float $price = 0;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=false)
      */
-    protected $description;
+    protected string $description = '';
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CategoryEntity", inversedBy="products")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
-    protected $category;
+    protected ?CategoryEntity $category;
 
     /**
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    protected $createdAt;
+    protected \DateTime $createdAt;
 
     /**
-     * @ORM\Column(name="enabled", type="boolean")
+     * @ORM\Column(name="enabled", type="boolean", nullable=false)
      */
-    protected $enabled;
+    protected bool $enabled = false;
+
+    /**
+     * @ORM\Column(name="displatable", type="boolean", nullable=false)
+     */
+    protected bool $displayable = false;
 
     public function __construct()
     {
@@ -58,95 +63,62 @@ class ProductEntity
         return $this->name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName() : ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
+    public function setName(?string $name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrice()
+    public function getPrice(): float
     {
         return $this->price;
     }
 
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price)
+    public function setPrice(float $price)
     {
         $this->price = $price;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDescription()
+    public function getDescription() : ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description)
+    public function setDescription(?string $description)
     {
         $this->description = $description;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCategory()
+    public function getCategory() : ?CategoryEntity
     {
         return $this->category;
     }
 
-    /**
-     * @param mixed $category
-     */
-    public function setCategory($category)
+    public function setCategory(?CategoryEntity $category)
     {
         $this->category = $category;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
+    public function getCreatedAt() : \DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param mixed $createdAt
-     */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getEnabled()
+    public function isEnabled(): bool
     {
         return $this->enabled;
     }
@@ -154,5 +126,15 @@ class ProductEntity
     public function setEnabled($enabled): void
     {
         $this->enabled = $enabled;
+    }
+
+    public function isDisplayable(): bool
+    {
+        return $this->displayable;
+    }
+
+    public function setDisplayable(bool $displayable): void
+    {
+        $this->displayable = $displayable;
     }
 }

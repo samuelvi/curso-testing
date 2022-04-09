@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Context\Frontend\Product\Repository;
 
 use App\Context\Frontend\Product\Model\RequestModel;
-use App\Entity\ProductEntity;
+use App\Repository\Product\ProductQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -24,10 +24,9 @@ final class ProductFinder
 
     public function findProducts(RequestModel $requestModel): Pagerfanta
     {
-        $qb = $this->em->getRepository(ProductEntity::class)
-                       ->createQueryBuilder('product')
-                       ->innerJoin('product.category', 'category')
-                       ->addSelect('category');
+        $qb = ProductQuery::buildDisplayableProductsQb($this->em);
+        $qb->innerJoin('product.category', 'category')
+            ->addSelect('category');
 
         $this->buildConditions($qb, $requestModel);
         $qb->getQuery()->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);

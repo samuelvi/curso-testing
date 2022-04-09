@@ -92,6 +92,3 @@ Feature: Product Workflow
     Then  I should see "<div>A film about terrorists and airplane hijacking</div>"
     Then  I should see "Category: action"
     Then  I should see "Price: 55.00€"
-
-
-

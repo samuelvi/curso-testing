@@ -6,6 +6,8 @@ namespace App\Repository\Product;
 
 use App\Entity\ProductEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class ProductQuery extends ServiceEntityRepository
@@ -18,11 +20,18 @@ final class ProductQuery extends ServiceEntityRepository
     public function findLastInsertedProduct(): ?ProductEntity
     {
         return $this->getEntityManager()
-             ->getRepository(ProductEntity::class)
-             ->createQueryBuilder('product')
+            ->getRepository(ProductEntity::class)
+            ->createQueryBuilder('product')
             ->orderBy('product.createdAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public static function buildDisplayableProductsQb(EntityManagerInterface $em): QueryBuilder
+    {
+        return $em->getRepository(ProductEntity::class)
+            ->createQueryBuilder('product')
+            ->andWhere('product.displayable = true');
     }
 }
