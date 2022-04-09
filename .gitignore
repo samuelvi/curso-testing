@@ -25,3 +25,8 @@ docker/mariadb/data/db
 docker/mariadb_test/data/db
 _docker
 .idea
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

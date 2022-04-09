@@ -93,8 +93,9 @@
         "hautelook/alice-bundle": "^2.9",
         "phpunit/phpunit": "^9.5",
         "rpkamp/mailhog-behat-extension": "^0.6.7",
+        "symfony/maker-bundle": "^1.38",
+        "symfony/phpunit-bridge": "^6.0",
         "symfony/web-profiler-bundle": "5.4.*",
-        "theofidry/alice-data-fixtures": "^1.5",
-        "symfony/maker-bundle": "^1.38"
+        "theofidry/alice-data-fixtures": "^1.5"
     }
 }
