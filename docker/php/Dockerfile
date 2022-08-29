@@ -15,8 +15,6 @@ RUN cd /tmp && curl -sS https://get.symfony.com/cli/installer > symfony.phar && 
     chmod +x symfony.phar && \
     mv symfony.phar /usr/local/bin/symfony
 
-RUN cd /tmp && symfony && \
-    mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 # Install PHPUnit Globally
 RUN cd /tmp && curl https://phar.phpunit.de/phpunit.phar > phpunit.phar && \
@@ -140,6 +138,6 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 EXPOSE 9000
 
-#ENTRYPOINT ["sh", "./docker/php/init.sh"]
- CMD ["./docker/php/init.sh"]
+# ENTRYPOINT ["sh", "./docker/php/init.sh"]
+# CMD ["./docker/php/init.sh"]
 ##################################################################################################################

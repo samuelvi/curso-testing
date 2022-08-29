@@ -1,5 +1,9 @@
 # Curso Testing
 
+# Permissions
+
+find /Users/work/Sites/CursoTesting/ -type d -exec chmod 755 {} \;
+find /Users/work/Sites/CursoTesting/ -type f -exec chmod 644 {} \;
 
 # Build
 docker-compose -f ./docker/docker-compose.yml build
@@ -23,3 +27,6 @@ XDEBUG_MODE=off php bin/console doctrine:schema:update --force --env=dev
 
 # Load data
 SYMFONY_DEPRECATIONS_HELPER=disabled XDEBUG_MODE=off php bin/console hautelook:fixtures:load --purge-with-truncate --env=dev
+
+# With Mutagen
+mutagen-compose --env-file=docker/.env up --config=docker/docker-compose.yaml

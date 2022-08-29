@@ -10,7 +10,7 @@ services:
             - '8001:81'
         volumes:
             - ./../docker/apache2/vhosts:/etc/apache2/sites-enabled
-            - ./../:/var/www/html
+            - code:/var/www/html
         depends_on:
             - php
             - mariadb
@@ -26,7 +26,7 @@ services:
         extra_hosts:
             -   "host.docker.internal:host-gateway"
         volumes:
-            - ./../:/var/www/html
+            - code:/var/www/html
         depends_on:
             - mariadb
         user: www-data
@@ -75,3 +75,42 @@ services:
         ports:
             - 1026:1025 # smtp server
             - 8026:8025 # web ui
+
+
+volumes:
+
+    code:
+
+
+x-mutagen:
+    sync:
+        defaults:
+            ignore:
+                vcs: true
+        code:
+            ignore:
+                paths:
+                    - "./docker"
+                    - "node_modules"
+                    - "tmp"
+                    - "private"
+                    - "assets"
+            alpha: "../"
+            beta: "volume://code"
+            mode: "two-way-resolved"
+            permissions:
+                defaultOwner: "id:501"
+                defaultGroup: "id:20"
+                defaultFileMode: 0666
+                defaultDirectoryMode: 0777
+
+            configurationAlpha:
+                permissions:
+                    defaultOwner: "id:501" # user
+                    defaultGroup: "id:20" # user
+            configurationBeta:
+                permissions:
+                    defaultOwner: "id:1000" # www-data
+                    defaultGroup: "id:1000" # www-data
+                    defaultFileMode: 0666
+                    defaultDirectoryMode: 0777
